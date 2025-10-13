@@ -1,0 +1,67 @@
+
+
+/* ─ 選單列（手機板） ─ */
+.tabMb{
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: none;
+    
+    @media (max-width: 991.98px) { 
+        display: block;
+        position: sticky;
+        top: 69px;
+        z-index: 100;
+    }
+
+    .tab-mb-btn-box{
+        display: none;
+        @media (max-width: 576px) { 
+            display: block;
+        }
+        .tab-mb-btnR,.tab-mb-btnL{
+            position: absolute;
+            transform: translate(-50%,-50%);
+            
+            top:50%;
+            z-index: 10;
+            color: #8b0018;
+            background-color: #ffffff;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #8b0018;
+                color: #ffffff;
+            }
+        }
+        .tab-mb-btnR{
+            left: 95%;
+        }
+        .tab-mb-btnL{
+            left: 5%;
+        }
+    }
+    .tab-mb-swiper{
+        width: 100%;
+            
+        .tab-mb-link{
+            font-size: 16px;
+            color: #000000;
+            font-weight: 700;
+            padding: 16px 12px;
+            text-align: center;
+            background-color: #ffffff;
+            &:hover{
+                background-color: #8b0018;
+                color: #ffffff;
+            }
+            &.active{
+                background-color: #8b0018;
+                color: #ffffff;
+            }
+        }
+        
+    }
+}

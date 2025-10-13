@@ -1,0 +1,121 @@
+
+.orderManagement{
+    width: 100%;
+    min-height: calc(100vh - 69px);
+    @media (max-width: 991.98px) { 
+        min-height: calc(100vh - 69px - 56px);
+    }
+    background-color: #d9d9d9;
+
+    .orderManagement-content{
+        // padding: 72px;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 69px); 
+        @media (max-width: 991.98px) { 
+            min-height: calc(100vh - 69px - 56px);
+        }
+        padding: 24px;
+        gap: 24px;
+
+        .NoActive{
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: calc(100vh - 69px - 48px); 
+            @media (max-width: 991.98px) { 
+                min-height: calc(100vh - 69px - 56px - 48px);
+            }
+            .NoActive-title-set{
+                
+            }
+        }
+
+        .orderManagementTitle-box{
+
+            .title-set{
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+
+        .orderManagementSearch{
+            background-color: #ffffff;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            
+            .orderBtn-box{
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 24px;
+                .btn-set{
+                    padding: 6px 12px;
+                    border: none;
+                    border-radius: 4px;
+                    background-color: #8b0018;
+                    color: #fff;
+                }
+            }
+
+            .order-box{
+                width: 100%;
+                overflow-x: visible;
+                @media (max-width: 991.98px) { 
+                    overflow-x: auto;
+                }
+                table{
+                    width: 100%;
+                    @media (max-width: 991.98px) { 
+                        min-width: 900px;
+                    }
+                    thead{
+                        background-color: #d9d9d9;
+                        .orderTitle-box{
+
+                            .title-set{
+                                font-size: 16px;
+                                color: #000000;
+                                padding: 12px;
+                                text-align: center;
+                            }
+                        }
+                    }
+
+                    tbody{
+
+                        .orderContent-box{
+                            border-bottom: 1px solid #ddd;
+                            .item-set{
+                                font-size: 16px;
+                                color: #000000;
+                                padding: 12px;
+                                text-align: center;
+
+                                .orderImg-set{
+                                    width: 48px;
+                                    height: 48px;
+                                    object-fit: cover;
+                                    border-radius: 8px;
+                                    background-color: #ffffff;
+                                }
+
+                                .editBtn-set,.orderBtn-set{
+                                    padding: 6px 12px;
+                                    border: none;
+                                    border-radius: 4px;
+                                    background-color: #8b0018;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

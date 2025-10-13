@@ -1,0 +1,86 @@
+
+
+.LoginForm-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 24px;
+
+    .emailGroup{
+        color: #000000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 12px;
+    }
+
+    .passWordGroup{
+        color: #000000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: 12px;
+
+        .passWordBtn-set{
+            border: none;
+            background-color: transparent;
+            color: #000000;
+            display: block;
+            margin-left: auto;
+        }
+    }
+
+    .submitBtnGroup{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        gap: 12px;
+        .formBtn-set{
+            font-size: 16px;
+            width: 100%;
+            padding: 12px 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #8b0018;
+            color: #fff;
+        }
+
+        .registerPageBtn-box{
+
+            .text-set{
+                font-size: 16px;
+                color: #000000;
+                font-weight: 400;
+            }
+
+            .registerPageBtn-set{
+                border: none;
+                background-color: transparent;
+                color: #000000;
+            }
+        }
+    }
+    
+}
+
+.form-control-set{
+    padding: 6px 12px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.form-control:focus.form-control:focus{
+//當有人點擊form-control時套用效果
+  box-shadow: none;
+}
+
+.form-control::placeholder{
+  color:rgba(255, 255, 255,0.5);
+}

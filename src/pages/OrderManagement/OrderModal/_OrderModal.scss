@@ -1,0 +1,136 @@
+.modal{
+    width: 100%;
+    height: 100vh;
+
+    &.orderModel{
+        //定位效果
+        .modal-dialog{
+
+            // model整體元件
+            .modal-content{
+
+                //header設定
+                .modal-header{
+                    position: relative;
+                    border: none;
+                    // header背景設定
+                    &.orderModalHeaderBgSet{
+                        background-color: #d9d9d9;
+                    }
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .title-set{
+                        color: #000000;
+                        width: 100%;
+                        text-align: center;
+                        font-size: 24px;
+                        font-weight: 600;
+                    }
+
+                    //header關閉icon設定
+                    .orderModalBtnClose{
+                        position: absolute;
+                        top: 50%;
+                        left: auto;
+                        right: 3%;
+                        z-index: 20;
+                        transform: translateY(-50%);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: none;
+                        background-color: transparent;
+                        // 關閉icon圖片設定
+                        .materialPageModalBtnCloseImgSet{
+                            width:48px; 
+                            height:48px;
+                            color: #000000;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+
+                //model本體設定
+                .orderModal-body-set{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    background-color: #ffffff;
+                    border-radius: 0 0 5px 5px;
+                    border:none;
+                    padding: 0px 32px 32px 32px;
+                    
+                    .bodyContent-box{
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        .item-set{
+                            display: flex;
+                            padding: 12px 0px;
+                            border-bottom: 1px solid #6d6d6d;
+                            .title-box{
+                                width: 100%;
+                                display: flex;
+                                justify-content: start;
+                                align-items: center;
+                                .title-set{
+                                    font-size: 16px;
+                                    color: #000000;
+                                }
+                            }
+
+                            .img-box{
+                                width: 100%;
+                                height: auto;
+                                display: flex;
+                                justify-content: start;
+                                align-items: center;
+                                .img-set{
+                                    width: 60px;
+                                    height: auto;
+                                    object-fit: cover;
+                                    aspect-ratio: 1 / 1;
+                                }
+                            }
+
+                            .text-box{
+                                width: 100%;
+                                display: flex;
+                                justify-content: start;
+                                align-items: center;
+                                .text-set{
+                                    font-size: 16px;
+                                    color: #000000;
+                                }
+                            }
+                        }
+                    }
+
+                    .orderBtn-box{
+                        width: 100%;
+                        padding: 32px 0 0 0;
+                        display: flex;
+                        justify-content: end;
+                        align-items: center;
+                        .orderBtn-set{
+                            padding: 12px 48px;
+
+                        }
+                    }
+                }
+            }
+        }
+
+        
+
+        //model本體背景
+        .orderModal-body-set{
+            
+        }
+    }    
+}
+

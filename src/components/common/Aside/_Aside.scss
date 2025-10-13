@@ -1,0 +1,43 @@
+
+
+
+.aside{
+    width: 18.75%;
+    height: auto;
+    display: block;
+    border-right: 5px solid #d9d9d9;
+    @media (max-width: 992px){
+        display: none;
+    }
+    .aside-content{
+        width: 100%;
+        height: calc(100vh - 69px);
+        padding: 32px;
+        
+        .aside-item-box{
+            position: sticky;
+            top: 101px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            .asideItem-set{
+                color: #000000;
+                padding: 12px 24px;
+                font-size: 16px;
+                font-weight: 700;
+                background-color: #ffffff;
+                border-radius: 8px;
+                &:hover{
+                    color: #ffffff;
+                    background-color: #8b0018;
+                }
+
+                &.active{
+                    color: #ffffff;
+                    background-color: #8b0018;
+                }
+            }
+        }
+    } 
+}

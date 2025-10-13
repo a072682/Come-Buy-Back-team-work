@@ -1,0 +1,142 @@
+
+.BackIndexPage{
+    width: 100%;
+    min-height: calc(100vh - 69px);
+    @media (max-width: 991.98px) { 
+        min-height: calc(100vh - 69px - 56px);
+    }
+    background-color: #d9d9d9;
+
+    .BackIndexPage-content{
+        // padding: 72px;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 69px); 
+        @media (max-width: 991.98px) { 
+            min-height: calc(100vh - 69px - 56px);
+        }
+        padding: 24px;
+        gap: 24px;
+            .top{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                min-height: 0;
+                flex: 1 1 0;
+                gap: 24px;
+                @media (max-width: 576px) { 
+                    flex-direction: column;
+                    flex: 0 0 auto;
+                }
+                .chartGroup02-set{
+                    background-color: #ffffff;
+                    flex: 1 1 0;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 0;
+                    padding: 32px;
+                    @media (max-width: 576px) { 
+                        padding: 12px;
+                    }
+                    .title-box{
+                        width: 100%;
+                    }
+                    .chartGroup-box{
+                        width: 100%;
+                        flex: 1 1 0;            
+                        /* 把剩下高度全給圖表區 */
+                        min-height: 0;
+                        position: relative; /* 建議：外掛/自訂 tooltip 定位會用到 */
+                        @media (max-width: 576px) { 
+                            flex: 0 0 auto;
+                            aspect-ratio: 1 / 1;
+                        }
+                    }
+                }
+                .chartGroup03-set{
+                    background-color: #ffffff;
+                    flex: 1 1 0; 
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 0;
+                    padding: 32px;
+                    @media (max-width: 576px) { 
+                        padding: 12px;
+                        flex: 0 0 auto;
+                    }
+                    .title-box{
+                        width: 100%;
+                    }
+                    .chartGroup-box{
+                        width: 100%;
+                        flex: 1 1 0;            
+                        /* 把剩下高度全給圖表區 */
+                        min-height: 0;
+                        position: relative; /* 建議：外掛/自訂 tooltip 定位會用到 */
+                        @media (max-width: 576px) {
+                            flex: 0 0 auto;
+                            aspect-ratio: 1 / 1;
+                        }
+                        
+                    }
+
+                    .chartTitle {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+
+                        .legendBox {
+                            width: 12px;
+                            height: 12px;
+                            margin-right: 8px;
+                            background-color: #800020;
+                        }
+                    }
+                }
+            }
+
+            .bottom{
+                display: flex;
+                width: 100%;
+                min-width: 0;
+                min-height: 0;
+                flex: 1 1 0;
+                background-color:aquamarine;
+                @media (max-width: 576px) { 
+                    flex: 0 0 auto;
+                    min-height: auto;
+                }
+                .chartGroup01-set{
+                    background-color: #ffffff;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1 1 0;
+                    min-width: 0;
+                    padding: 32px;
+                    @media (max-width: 576px) { 
+
+                    }
+                    .title-box{
+                        width: 100%;
+                        flex: 0 0 auto;         
+                        /* 不要撐開剩餘空間 */
+                    }
+                    .chartGroup-box{
+                        width: 100%;
+                        flex: 1 1 0;            
+                        /* 把剩下高度全給圖表區 */
+                        min-height: 0;
+                        position: relative; /* 建議：外掛/自訂 tooltip 定位會用到 */
+                        @media (max-width: 576px) { 
+                            flex: 0 0 auto;
+                            aspect-ratio: 1 / 1;
+                        }
+                    }
+                }
+            } 
+    }
+}

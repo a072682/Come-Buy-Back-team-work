@@ -1,0 +1,279 @@
+
+.UserManagement{
+    width: 100%;
+    min-height: calc(100vh - 69px);
+    @media (max-width: 991.98px) { 
+        min-height: calc(100vh - 69px - 56px);
+    }
+    background-color: #d9d9d9;
+
+    .UserManagement-content{
+        // padding: 72px;
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 69px); 
+        @media (max-width: 991.98px) { 
+            min-height: calc(100vh - 69px - 56px);
+        }
+        padding: 24px;
+        gap: 24px;
+
+        .NoActive{
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: calc(100vh - 69px - 48px); 
+            @media (max-width: 991.98px) { 
+                min-height: calc(100vh - 69px - 56px - 48px);
+            }
+            .NoActive-title-set{
+                
+            }
+        }
+
+        .BasicInformationTitle-box{
+
+            .title-set{
+                font-size: 24px;
+                font-weight: 600;
+            }
+        }
+
+        .userSearch{
+            background-color: #ffffff;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            .userSearchTitle-box{
+
+                .title-set{
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #000000;
+                }
+            }
+
+            .inputGroup-box{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 24px;
+                .inputGroup-set{
+                    width: calc(50% - 12px);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                    @media (max-width: 991.98px) { 
+                        width: 100%;
+                    }
+                    .Label-set{
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #000000;
+                    }
+
+                    .Input-set{
+                        width: 100%;
+                        
+                    }
+                }
+            }
+
+            .userSearchBtn-box{
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                .btn-set{
+                    border: none;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #ffffff;
+                    padding: 12px 88px;
+                    border-radius: 8px;
+                    background-color: #8b0018;
+                }
+            }
+
+            // .userResult {
+            //     width: 100%;
+            //     overflow-x: visible;
+            //     @media (max-width: 991.98px) { 
+            //         overflow-x: auto;
+            //     }
+            //     table {
+            //         width: 100%;
+            //         @media (max-width: 991.98px) { 
+            //             min-width: 900px;
+            //         }
+            //         thead {
+            //             background-color: #f2f2f2;
+
+            //             .userResultTitle-box {
+
+            //                 .title-set {
+            //                     text-align: center;
+            //                     padding: 12px;
+            //                     font-weight: 600;
+            //                     color: #333;
+            //                 }
+            //             }
+            //         }
+
+            //         tbody {
+
+            //             .userResultContent-box {
+            //                 border-bottom: 1px solid #ddd;
+
+            //                 .item-set {
+            //                     text-align: center;
+            //                     padding: 12px;
+            //                     color: #555;
+
+            //                     .item-icon{
+            //                         background-color: #00b1b1;
+            //                         color: #ffffff;
+            //                         border-radius: 50%;
+            //                     }
+                                
+
+            //                     .editBtn-set {
+            //                         padding: 6px 12px;
+            //                         border: none;
+            //                         border-radius: 4px;
+            //                         background-color: #8b0018;
+            //                         color: #fff;
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+        }
+
+        .userManagement-box {
+            width: 100%;
+            overflow-x: visible;
+            @media (max-width: 991.98px) { 
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                @media (max-width: 991.98px) { 
+                    min-width: 900px;
+                }
+                thead {
+                    background-color: #f2f2f2;
+
+                    .userManagementItemTitle-box {
+
+                        .title-set {
+                            text-align: center;
+                            padding: 12px;
+                            font-weight: 600;
+                            color: #333;
+                        }
+                    }
+                }
+
+                tbody {
+
+                    .userManagementItemContent-box {
+                        border-bottom: 1px solid #ddd;
+
+                        .item-set {
+                            text-align: center;
+                            padding: 12px;
+                            color: #000000;
+
+                            // .item-icon{
+                            //     background-color: #00b1b1;
+                            //     color: #ffffff;
+                            //     border-radius: 50%;
+                            // }
+                            
+
+                            .editBtn-set {
+                                padding: 6px 12px;
+                                border: none;
+                                border-radius: 4px;
+                                background-color: #8b0018;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // .userManagementTitle-box{
+
+        //     .title-set{
+
+
+        //     }
+        // }
+
+        // .memberRights{
+        //     width: 100%;
+        //     background-color: #ffffff;
+        //     padding: 24px;
+        //     overflow-x: visible;
+        //     @media (max-width: 991.98px) { 
+        //         overflow-x: auto;
+        //     }
+        //     table{
+        //         width: 100%;
+        //         @media (max-width: 991.98px) { 
+        //             min-width: 900px;
+        //         }
+        //         thead{
+        //             background-color: #d9d9d9;
+        //             .memberRightsTitle-box{
+
+        //                 .title-set{
+        //                     font-size: 16px;
+        //                     color: #000000;
+        //                     padding: 12px;
+        //                     text-align: center;
+        //                 }
+        //             }
+        //         }
+
+        //         tbody{
+
+        //             .memberRightsContent-box{
+        //                 border-bottom: 1px solid #ddd;
+        //                 .item-set{
+        //                     font-size: 16px;
+        //                     color: #000000;
+        //                     padding: 12px;
+        //                     text-align: center;
+
+        //                     .cancel-icon{
+        //                         background-color: #f93b5c;
+        //                         color: #ffffff;
+        //                         border-radius: 50%;
+        //                     }
+
+        //                     .check-icon{
+        //                         background-color: #00b1b1;
+        //                         color: #ffffff;
+        //                         border-radius: 50%;
+        //                     }
+
+        //                     .editBtn-set{
+        //                         padding: 6px 12px;
+        //                         border: none;
+        //                         border-radius: 4px;
+        //                         background-color: #8b0018;
+        //                         color: #fff;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}

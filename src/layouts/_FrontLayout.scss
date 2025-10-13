@@ -1,0 +1,17 @@
+
+.before-box{
+    width: 100%;
+    height: 69px;
+}
+
+.main-box{
+    width: 100%;
+    display: flex;
+
+    .Outlet-box{
+        width: 81.25%;
+        @media (max-width: 992px){
+            width: 100%;
+        }
+    }
+}

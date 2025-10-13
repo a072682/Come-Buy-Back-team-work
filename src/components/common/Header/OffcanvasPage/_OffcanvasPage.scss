@@ -1,0 +1,99 @@
+/* 背景遮罩 */
+.offcanvas-backdrop-set{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+}
+
+/* 左側滑出面板 */
+.offcanvas-panel {
+  position: fixed;
+  top: 0;
+  right:0;
+  left: auto;
+  width: 80%;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  
+  // animation: slideIn 0.3s ease;
+
+    /* Offcanvas 內部樣式調整（建議追加） */
+    .offcanvas-box{
+        height: 100vh;
+        padding: 12px 24px;
+        display: flex;
+        flex-direction: column;
+        background:#ffffff;
+        .offcanvas-header{
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            .offcanvasBtnClose{
+                border: none;
+                background-color: transparent;
+                width: 48px;
+                height: 48px;
+                padding: 0px;
+                .offcanvasCloseImgSet{
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                }
+            }
+        }
+        .offcanvas-body{
+            width: 100%;
+            padding: 0px 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            gap: 12px;
+            .offcanvasItem-set{
+              width: 100%;
+              font-size: 24px;
+              padding:24px 0px;
+              border-radius: 12px;
+              color: #000000;
+              background-color: transparent;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              &:hover{
+                background-color: #8b0018;
+                color: #ffffff;
+              }
+            }
+
+            .userImg-box{
+                width: 104px;
+                height: 104px;
+                border: none;
+                padding: 0px;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .userImg-set{
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    border-radius:50%;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
