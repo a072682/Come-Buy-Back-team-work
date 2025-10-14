@@ -15,96 +15,101 @@
     padding: 8px 0px;
 
     /*內容本體區塊*/
-    .navbar-box{
+    .navbar{
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        /* 左上 LOGO 區塊設定 */
-        .navbarLogo-box{
-            width: 185px;
-            height: auto;
-            .navbarLogoImg-set{
-                max-width: 100%;
-                height: auto;
-                object-fit: cover;
-            }
-        }
-        /* 左上 LOGO 區塊設定 */
-
-        /* lg 以上選項區塊 */
-        .navbarItem-box{
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            .navbarItem-set{
-                font-size: 16px;
-                padding: 12px 8px 9px 8px;
-                border-bottom:3px solid transparent;
-                color: #000000;
-
-                &:hover{
-                    border-bottom:3px solid #8b0018;
-                }
-
-                &.active{
-                    border-bottom:3px solid #8b0018;
-                }
-            }
-            .testBtn{
-                width: 20px;
-                height: 20px;
-                background-color:#0400ff ;
-                border-radius: 50%;
-                border: none;
-            }
-        }
-        /* lg 以上選項區塊 */
-
-        /* lg 以上會員頭像 */
-        .userImg-box{
-            width: 48px;
-            height: 48px;
-            border: none;
-            padding: 0px;
-            background-color: transparent;
+        padding: 0px 24px;
+        .navbar-box{
+            width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            .userImg-set{
-                width: 100%;
+            /* 左上 LOGO 區塊設定 */
+            .navbarLogo-box{
+                width: 185px;
                 height: auto;
-                object-fit: cover;
-                border-radius:50%;
-            }
-        }
-        /* lg 以上會員頭像 */
-
-        /* lg 以下的右上角：漢堡選單按鈕 */
-        .navbarMenuIcon-box{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .MenuIconBtn-set{
-                width: 48px;
-                height: 48px;
-                border: none;
-                background-color: transparent;
-                .MenuIconImg-set{
+                .navbarLogoImg-set{
                     max-width: 100%;
                     height: auto;
                     object-fit: cover;
-                    color: #ffffff;
-                    animation: spin 10s linear infinite;
+                }
+            }
+            /* 左上 LOGO 區塊設定 */
 
-                    /* 旋轉動畫 */
-                    @keyframes spin {
-                    to { transform: rotate(360deg); }
+            /* lg 以上選項區塊 */
+            .navbarItem-box{
+                justify-content: center;
+                align-items: center;
+                gap: 24px;
+                .navbarItem-set{
+                    font-size: 16px;
+                    padding: 12px 8px 9px 8px;
+                    border-bottom:3px solid transparent;
+                    color: #000000;
+
+                    &:hover{
+                        border-bottom:3px solid #8b0018;
+                    }
+
+                    &.active{
+                        border-bottom:3px solid #8b0018;
+                    }
+                }
+                .testBtn{
+                    width: 20px;
+                    height: 20px;
+                    background-color:#0400ff ;
+                    border-radius: 50%;
+                    border: none;
+                }
+            }
+            /* lg 以上選項區塊 */
+
+            /* lg 以上會員頭像 */
+            .userImg-box{
+                width: 48px;
+                height: 48px;
+                border: none;
+                padding: 0px;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .userImg-set{
+                    width: 100%;
+                    height: auto;
+                    object-fit: cover;
+                    border-radius:50%;
+                }
+            }
+            /* lg 以上會員頭像 */
+
+            /* lg 以下的右上角：漢堡選單按鈕 */
+            .navbarMenuIcon-box{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .MenuIconBtn-set{
+                    width: 48px;
+                    height: 48px;
+                    border: none;
+                    background-color: transparent;
+                    .MenuIconImg-set{
+                        max-width: 100%;
+                        height: auto;
+                        object-fit: cover;
+                        color: #ffffff;
+                        animation: spin 10s linear infinite;
+
+                        /* 旋轉動畫 */
+                        @keyframes spin {
+                        to { transform: rotate(360deg); }
+                        }
                     }
                 }
             }
         }
     }
+    
     /*內容本體區塊*/
 }
 
