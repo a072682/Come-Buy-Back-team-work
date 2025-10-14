@@ -1,7 +1,6 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { Offcanvas, Button, Nav, Navbar as BootstrapNavbar, Container, NavDropdown, Navbar } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Nav, Navbar as Container, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import './_Header.scss';
 import OffcanvasPage from "./OffcanvasPage/OffcanvasPage";
@@ -39,11 +38,8 @@ function Header(){
     //#region 連線測試
         //連線測試
         useEffect(()=>{
-            if(!loginState){
-                return;
-            }
             dispatch(linkTest()); 
-        },[loginState])
+        },[])
         //連線測試
     //#endregion
 
@@ -52,7 +48,7 @@ function Header(){
         useEffect(()=>{
             const getUserData = async()=>{
                 try{
-                    const getUserDataRef = await dispatch(checkLogin()).unwrap();
+                    await dispatch(checkLogin()).unwrap();
                     
                 }catch(error){
                     console.log("登入檢查失敗");
