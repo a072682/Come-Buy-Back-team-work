@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";//一開始先import createSlice(系統通常會自動抓取)
-import axios from "axios";
-axios.defaults.withCredentials = true; 
+import { axiosWithCookie, BASE_URL } from "../../api";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const API_PATH = import.meta.env.VITE_API_PATH;
+
+
+//此區塊為測試開發用內容
+        // import axios from "axios";
+        // axios.defaults.withCredentials = true; 
+
+        // const BASE_URL = import.meta.env.VITE_BASE_URL;
+        // const API_PATH = import.meta.env.VITE_API_PATH;
+//此區塊為測試開發用內容
 
 //其內部結構1.name(名子)2.initialState(初始值)
 export const messageSlice = createSlice({
@@ -27,7 +33,7 @@ export const { } = messageSlice.actions;
         "order/getAllMessageData",
         async (_, { dispatch, rejectWithValue }) => {
             try {
-                const getAllMessageDataRef = await axios.get(`${BASE_URL}/adminMessage/getAllMessage`);
+                const getAllMessageDataRef = await axiosWithCookie.get(`${BASE_URL}/adminMessage/getAllMessage`);
                 console.log("取得所有留言資料成功",getAllMessageDataRef.data.message);
                 return(getAllMessageDataRef.data);
             } catch (error) {
@@ -43,7 +49,7 @@ export const { } = messageSlice.actions;
         "order/getToDayMessageData",
         async (_, { dispatch, rejectWithValue }) => {
             try {
-                const getToDayMessageDataRef = await axios.get(`${BASE_URL}/adminMessage/getToDayMessage`);
+                const getToDayMessageDataRef = await axiosWithCookie.get(`${BASE_URL}/adminMessage/getToDayMessage`);
                 console.log("取得所有留言資料成功",getToDayMessageDataRef.data.message);
                 return(getToDayMessageDataRef.data);
             } catch (error) {

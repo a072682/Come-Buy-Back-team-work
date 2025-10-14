@@ -40,6 +40,9 @@ function BackIndexPage (){
 
     //#region 取得圓環圖資料
         useEffect(()=>{
+            if(!loginState){
+                return;
+            }
             const handelGetChartData01 = async()=>{
                 try{
                     const getChartData01 = await dispatch(getChartData()).unwrap();
@@ -49,7 +52,7 @@ function BackIndexPage (){
                 }
             }
             handelGetChartData01();
-        },[])
+        },[loginState]);
     //#endregion
 
     //#region 儲存長條圖資料狀態宣告
@@ -102,6 +105,9 @@ function BackIndexPage (){
 
     //#region 取得長條圖資料
         useEffect(()=>{
+            if(!loginState){
+                return;
+            }
             const handelGetBarChartData = async()=>{
                 try{
                     const getBarChartDataRef = await dispatch(getBarChartData()).unwrap();
@@ -112,7 +118,7 @@ function BackIndexPage (){
                 }
             }
             handelGetBarChartData();
-        },[])
+        },[loginState]);
     //#endregion
 
     //#region 儲存折線圖資料狀態宣告
@@ -163,6 +169,9 @@ function BackIndexPage (){
 
     //#region 取得折線圖資料
         useEffect(()=>{
+            if(!loginState){
+                return;
+            }
             const handelGetLineChartData = async()=>{
                 try{
                     const getLineChartDataRef = await dispatch(getLineChartData()).unwrap();
@@ -175,7 +184,7 @@ function BackIndexPage (){
                 }
             }
             handelGetLineChartData();
-        },[])
+        },[loginState]);
     //#endregion
 
     

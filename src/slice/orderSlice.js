@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";//一開始先import createSlice(系統通常會自動抓取)
-import axios from "axios";
-axios.defaults.withCredentials = true; 
+import { axiosWithCookie, BASE_URL } from "../../api";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const API_PATH = import.meta.env.VITE_API_PATH;
+
+//此區塊為測試開發用內容
+        // import axios from "axios";
+        // axios.defaults.withCredentials = true; 
+
+        // const BASE_URL = import.meta.env.VITE_BASE_URL;
+        // const API_PATH = import.meta.env.VITE_API_PATH;
+//此區塊為測試開發用內容
 
 //其內部結構1.name(名子)2.initialState(初始值)
 export const orderSlice = createSlice({
@@ -27,7 +32,7 @@ export const { } = orderSlice.actions;
         "order/getAllOrderData",
         async (_, { dispatch, rejectWithValue }) => {
             try {
-                const getAllOrderDataRef = await axios.get(`${BASE_URL}/adminOrder/getAllOrder`);
+                const getAllOrderDataRef = await axiosWithCookie.get(`${BASE_URL}/adminOrder/getAllOrder`);
                 console.log("取得所有訂單資料成功",getAllOrderDataRef.data.message);
                 return(getAllOrderDataRef.data);
             } catch (error) {
@@ -43,7 +48,7 @@ export const { } = orderSlice.actions;
         "login/linkTest",
         async (_,{ dispatch }) => {
             try {
-                const getBarChartDataRef = await axios.get(`${BASE_URL}/adminOrder/getBarChartData`);
+                const getBarChartDataRef = await axiosWithCookie.get(`${BASE_URL}/adminOrder/getBarChartData`);
                 console.log("取得長條圖資料成功",getBarChartDataRef.data);
                 return(getBarChartDataRef.data.ChartData);
             } catch (error) {
@@ -59,7 +64,7 @@ export const { } = orderSlice.actions;
         "order/getToDayOrderData",
         async (_, { dispatch, rejectWithValue }) => {
             try {
-                const getToDayOrderDataRef = await axios.get(`${BASE_URL}/adminOrder/getToDayOrder`);
+                const getToDayOrderDataRef = await axiosWithCookie.get(`${BASE_URL}/adminOrder/getToDayOrder`);
                 console.log("取得所有訂單資料成功",getToDayOrderDataRef.data.message);
                 return(getToDayOrderDataRef.data);
             } catch (error) {
@@ -75,7 +80,7 @@ export const { } = orderSlice.actions;
         "order/reviewOrderData",
         async ({orderData}, { dispatch, rejectWithValue }) => {
             try {
-                const reviewOrderDataRef = await axios.post(`${BASE_URL}/adminOrder/reviewOrder`,orderData);
+                const reviewOrderDataRef = await axiosWithCookie.post(`${BASE_URL}/adminOrder/reviewOrder`,orderData);
                 console.log("審核訂單資料成功",reviewOrderDataRef.data.message);
                 return(reviewOrderDataRef.data.reviewData);
             } catch (error) {

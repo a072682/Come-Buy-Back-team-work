@@ -16,11 +16,25 @@ import 'swiper/css';//swiper
 
 import "chart.js/auto";//chart.js圖表套件
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Provider store = { store }>
-      <RouterProvider router ={ router }>
-      </RouterProvider>
-    </Provider>
-  </StrictMode>,
-)
+import { initApi } from './api.js';
+
+
+
+// 🟢 這是網站啟動的主程式
+async function startApp() {
+
+  // 先執行 initApi()，去抓 public/config.json，幫 axios 設定好後端網址
+  await initApi(); 
+
+  // 正式啟動 React 畫面
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <Provider store = { store }>
+        <RouterProvider router ={ router }>
+        </RouterProvider>
+      </Provider>
+    </StrictMode>,
+  )
+}
+//「網站開機」
+startApp();

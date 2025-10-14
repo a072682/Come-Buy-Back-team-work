@@ -1,9 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";//一開始先import createSlice(系統通常會自動抓取)
-import axios from "axios";
-axios.defaults.withCredentials = true; 
+import { axiosWithCookie, BASE_URL } from "../../api";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
-const API_PATH = import.meta.env.VITE_API_PATH;
+
+
+//此區塊為測試開發用內容
+    // import axios from "axios";
+    // axios.defaults.withCredentials = true; 
+
+    // const BASE_URL = import.meta.env.VITE_BASE_URL;
+    // const API_PATH = import.meta.env.VITE_API_PATH;
+//此區塊為測試開發用內容
 
 //其內部結構1.name(名子)2.initialState(初始值)
 export const loginSlice = createSlice({
@@ -143,7 +149,7 @@ export const { login, logout } = loginSlice.actions;
         "login/getAllUserData",
         async (_, { dispatch, rejectWithValue }) => {
             try {
-                const getAllUserDataRef = await axios.get(`${BASE_URL}/admin/getAllUser`);
+                const getAllUserDataRef = await axiosWithCookie.get(`${BASE_URL}/admin/getAllUser`);
                 console.log("所有會員資料取得成功:",getAllUserDataRef.data.allUserData);
                 return(getAllUserDataRef.data.allUserData);
             } catch (error) {
@@ -159,7 +165,7 @@ export const { login, logout } = loginSlice.actions;
         "login/searchUserData",
         async ({searchData}, { dispatch, rejectWithValue }) => {
             try {
-                const searchUserDataRef = await axios.post(`${BASE_URL}/admin/searchUser`,searchData);
+                const searchUserDataRef = await axiosWithCookie.post(`${BASE_URL}/admin/searchUser`,searchData);
                 console.log("搜尋會員資料成功:",searchUserDataRef.data.message);
                 return(searchUserDataRef.data.searchUserData);
             } catch (error) {
@@ -175,7 +181,7 @@ export const { login, logout } = loginSlice.actions;
         "login/roleChange",
         async ({userData}, { dispatch, rejectWithValue }) => {
             try {
-                const roleChangeRef = await axios.post(`${BASE_URL}/admin/roleChange`,userData);
+                const roleChangeRef = await axiosWithCookie.post(`${BASE_URL}/admin/roleChange`,userData);
                 console.log("修改會員權限成功:",roleChangeRef.data);
 
             } catch (error) {
