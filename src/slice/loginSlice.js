@@ -40,7 +40,7 @@ export const { login, logout } = loginSlice.actions;
         "login/linkTest",
         async (_,{ dispatch }) => {
             try {
-                const response = await axios.get(`${BASE_URL}/test-db`);
+                const response = await axiosWithCookie.get(`${BASE_URL}/test-db`);
                 console.log("連線成功",response.data);
                 return(response.data);
             } catch (error) {
@@ -57,7 +57,7 @@ export const { login, logout } = loginSlice.actions;
         "login/getChartData",
         async (_,{ dispatch }) => {
             try {
-                const getChartDataRef = await axios.get(`${BASE_URL}/admin/getChartData`);
+                const getChartDataRef = await axiosWithCookie.get(`${BASE_URL}/admin/getChartData`);
                 console.log("取得圓環資料成功",getChartDataRef.data);
                 return(getChartDataRef.data);
             } catch (error) {
@@ -73,7 +73,7 @@ export const { login, logout } = loginSlice.actions;
         "login/getLineChartData",
         async (_,{ dispatch }) => {
             try {
-                const getLineChartDataRef = await axios.get(`${BASE_URL}/admin/getLineChartData`);
+                const getLineChartDataRef = await axiosWithCookie.get(`${BASE_URL}/admin/getLineChartData`);
                 console.log("取得折線資料成功",getLineChartDataRef.data);
                 return(getLineChartDataRef.data.ChartData);
             } catch (error) {
@@ -90,7 +90,7 @@ export const { login, logout } = loginSlice.actions;
         "login/loginUser",
         async (account, { dispatch, rejectWithValue }) => {
             try {
-                const handleLoginRef = await axios.post(`${BASE_URL}/admin/adminlogin`, account);
+                const handleLoginRef = await axiosWithCookie.post(`${BASE_URL}/admin/adminlogin`, account);
                 console.log("登入成功",handleLoginRef.data);
                 dispatch(logout());
                 return({
@@ -112,7 +112,7 @@ export const { login, logout } = loginSlice.actions;
             "login/checkLogin",
             async (_,{ dispatch, rejectWithValue }) => {
                 try {
-                    const checkLoginRef = await axios.post(`${BASE_URL}/admin/adminlogInCheck`);
+                    const checkLoginRef = await axiosWithCookie.post(`${BASE_URL}/admin/adminlogInCheck`);
                     console.log("登入確認成功",checkLoginRef.data);
                     dispatch(login());
             } catch (error) {
@@ -133,7 +133,7 @@ export const { login, logout } = loginSlice.actions;
         "login/logoutUser",
         async (_, { dispatch }) => {
             try {
-                const handleLogoutRef = await axios.post(`${BASE_URL}/admin/adminlogout`);
+                const handleLogoutRef = await axiosWithCookie.post(`${BASE_URL}/admin/adminlogout`);
                 console.log("登出成功(Slice端)");
                 dispatch(logout());
             } catch (error) {

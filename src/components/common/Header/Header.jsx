@@ -18,6 +18,19 @@ function Header(){
     //#region 
     //#endregion
 
+    //#region 讀取中央登入資料
+        //讀取中央資料
+        const loginState = useSelector((state)=>{
+            return(
+                state.login.isLogin
+            )
+        })
+
+        useEffect(()=>{
+            console.log("loginState狀態:",loginState);
+        },[loginState])
+    //#endregion
+
     //#region 讀取中央函式前置宣告
         //讀取中央函式前置宣告
         const dispatch = useDispatch();
@@ -26,8 +39,11 @@ function Header(){
     //#region 連線測試
         //連線測試
         useEffect(()=>{
+            if(!loginState){
+                return;
+            }
             dispatch(linkTest()); 
-        },[])
+        },[loginState])
         //連線測試
     //#endregion
 
@@ -47,18 +63,7 @@ function Header(){
         //登入確認
     //#endregion
 
-    //#region 讀取中央登入資料
-        //讀取中央資料
-        const loginState = useSelector((state)=>{
-            return(
-                state.login.isLogin
-            )
-        })
-
-        useEffect(()=>{
-            console.log("loginState狀態:",loginState);
-        },[loginState])
-    //#endregion
+    
 
     //#region 側邊狀態
         const [onOpen, setOnOpen] = useState(false); // 控制 offcanvas 開關
