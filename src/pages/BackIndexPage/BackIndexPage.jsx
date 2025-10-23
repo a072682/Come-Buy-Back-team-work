@@ -327,7 +327,9 @@ function BackIndexPage (){
             datasets: [
                 {
                     label: "訂單數",
-                    data: chartBarTotalData,
+                    data: [27,60,43,28,44],
+                    //[27,60,43,28,44] 示範資料
+                    //chartBarTotalData 實際資料
                     backgroundColor: ["#800020",],
                     borderRadius: 5,         
                     // 長條四角圓角
@@ -419,7 +421,9 @@ function BackIndexPage (){
             datasets: [
                 {
                     label: "人次",
-                    data: vipTotalData,
+                    data: [16,8,7,13,15],
+                    //[16,8,7,13,15] 示範資料
+                    //vipTotalData 實際資料
                     // 線條樣式
                     borderColor: "#800020",      
                     // 線條顏色
@@ -447,7 +451,9 @@ function BackIndexPage (){
                 },
                 {
                     label: "人次",
-                    data: userTotalData,
+                    data: [12,17,6,9,12],
+                    //[16,8,7,13,15] 示範資料
+                    //userTotalData 實際資料
                     // 線條樣式
                     borderColor: "#dc546b",      
                     // 線條顏色
@@ -475,7 +481,9 @@ function BackIndexPage (){
                 },
                 {
                     label: "人次",
-                    data: vendorTotalData,
+                    data: [9,14,13,5,9],
+                    //[16,8,7,13,15] 示範資料
+                    //vendorTotalData 實際資料
                     // 線條樣式
                     borderColor: "#d6d6d6",      
                     // 線條顏色
@@ -548,7 +556,7 @@ function BackIndexPage (){
                     // Y 軸從 0 開始
                     min: 0,                      
                     // 最小值
-                    max: 3,                    
+                    max: 20,                    
                     // 最大值（強制上限）
                     ticks: {
                         stepSize: 1,             

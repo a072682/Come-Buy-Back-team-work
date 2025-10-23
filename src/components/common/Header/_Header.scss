@@ -1,4 +1,75 @@
 
+.mask{
+    position: fixed;
+    inset: 0;                 /* 等同 top/right/bottom/left:0 */
+    width: 100vw;
+    height: 100vh;            /* 或 100dvh 依需求 */
+    overflow: hidden;         /* 移除引號 */
+    background-color: rgba(226, 226, 226, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Safari */
+    display: grid;
+    place-items: center;      /* 置中內容 */
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity .25s ease;
+
+    .loader{
+        text-align: center;
+        padding: 24px 28px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(6px);
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+        animation: popIn .25s ease-out both;
+
+        .loader-text{
+            font-size: 18px;
+            line-height: 1.6;
+            color: #000000;
+            letter-spacing: .5px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: baseline;
+
+            /* 三個點點動畫 */
+            .dots{
+                display: inline-flex;
+                margin-left: 6px;
+
+                span{
+                    display: inline-block;
+                    width: .5em;
+                    text-align: center;
+                    opacity: 0.2;
+                    animation: blink 1.2s infinite;
+
+                    /* 把 nth-child 也巢狀到這裡 */
+                    &:nth-child(2){ animation-delay: .2s; }
+                    &:nth-child(3){ animation-delay: .4s; }
+                }
+            }
+        }
+    }
+}
+
+/* 動畫關鍵影格 */
+@keyframes blink{
+    0%, 20%   { opacity: .2; transform: translateY(0); }
+    40%       { opacity: 1;  transform: translateY(-2px); }
+    60%, 100% { opacity: .2; transform: translateY(0); }
+}
+
+@keyframes popIn{
+  from{ transform: translateY(6px) scale(.98); opacity: 0; }
+  to  { transform: translateY(0)    scale(1);   opacity: 1; }
+}
+
+/* 無動畫偏好（輔助無障礙） */
+@media (prefers-reduced-motion: reduce){
+  .loader, .dots span{ animation: none !important; }
+}
+
 .navbar.navBg-set{ 
     width: 100%;
     position: fixed;

@@ -17,6 +17,17 @@ function Header(){
     //#region 
     //#endregion
 
+    //#region 讀取中央登入狀態資料
+        //讀取中央資料
+        const linkState = useSelector((state)=>{
+            return(
+                state.login.linkState
+            )
+        })
+
+        useEffect(()=>{},[linkState])
+    //#endregion
+
     //#region 讀取中央登入資料
         //讀取中央資料
         const loginState = useSelector((state)=>{
@@ -73,6 +84,16 @@ function Header(){
     
     return(
         <>
+            <div className={linkState ? "d-none" : "mask"}>
+                <div className="loader">
+                    <p className="loader-text" aria-live="polite" aria-busy="true">
+                        網站載入中，請稍後
+                        <span className="dots">
+                            <span>.</span><span>.</span><span>.</span>
+                        </span>
+                    </p>
+                </div>
+            </div>
             <Navbar expand="lg" className="navBg-set" expanded={expanded} id="siteHeader">
                 <Container>
 

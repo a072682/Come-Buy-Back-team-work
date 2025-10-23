@@ -15,9 +15,16 @@ import { axiosWithCookie, BASE_URL } from "../api";
 export const loginSlice = createSlice({
   name: "login",
   initialState: {
+    linkState:false,//連線狀態
     isLogin: false,  // 是否登入
   },
   reducers: {
+    linkStateTrue: (state, action) => {
+        state.linkState = true;
+    },
+    linkStateFalse: (state, action) => {
+        state.linkState = false;
+    },
     login: (state, action) => {
       state.isLogin = true;
       state.user = action.payload; // 儲存登入的使用者資訊
@@ -28,7 +35,7 @@ export const loginSlice = createSlice({
     },
   },
 });
-export const { login, logout } = loginSlice.actions;
+export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.actions;
 //輸出時為元件slice名稱+.reducer
 
 //#region
@@ -39,12 +46,15 @@ export const { login, logout } = loginSlice.actions;
     export const linkTest = createAsyncThunk(
         "login/linkTest",
         async (_,{ dispatch }) => {
+            dispatch(linkStateFalse()); 
             try {
                 const response = await axiosWithCookie.get(`${BASE_URL}/test-db`);
                 console.log("連線成功",response.data);
+                dispatch(linkStateTrue()); 
                 return(response.data);
             } catch (error) {
                 console.log("連線失敗",error.response.data);
+                dispatch(linkStateFalse()); 
                 return(error.response.data);
             }
         }
