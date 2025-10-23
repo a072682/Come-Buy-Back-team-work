@@ -70,6 +70,15 @@ function Header(){
         //登入確認
     //#endregion
 
+    //#region 設定每固定時間觸發函式
+        useEffect(() => {
+            const id = setInterval(() => {
+                dispatch(checkLogin()).unwrap?.().catch(err => console.log("登入檢查失敗", err));
+            }, 25 * 60 * 1000); // 25 分鐘
+            return () => clearInterval(id);
+        }, []);
+    //#endregion
+
     
 
     //#region 側邊狀態
