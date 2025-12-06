@@ -3,14 +3,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './_OrderManagement.scss';
 import { useEffect, useState } from 'react';
-import { getAllOrderData, getToDayOrderData } from '../../slice/orderSlice';
+import { getAllOrderData, getToDayOrderData, orderDataDelete } from '../../slice/orderSlice';
 import OrderModal from './OrderModal/OrderModal';
 import ReviewModal from './ReviewModal/ReviewModal';
-
-
-
-
-
 
 function OrderManagement (){
 
@@ -32,11 +27,6 @@ function OrderManagement (){
         const dispatch = useDispatch();
     //#endregion
 
-    //#region 儲存訊息狀態宣告
-        const [msgData,setMsgData] = useState(null);
-        useEffect(()=>{},[msgData]);
-    //#endregion
-
     //#region 儲存所有訂單資料狀態宣告
         const [allOrderData,setAllOrderData] = useState(null);
         useEffect(()=>{},[allOrderData]);
@@ -44,7 +34,40 @@ function OrderManagement (){
 
     //#region 儲存單一訂單資料狀態宣告
         const [orderData,setOrderData] = useState(null);
-        useEffect(()=>{console.log("確認資料",orderData)},[orderData]);
+        useEffect(()=>{
+            //console.log("確認資料",orderData)
+        },[orderData]);
+    //#endregion
+
+    //#region 儲存訊息狀態宣告
+        const [msgData,setMsgData] = useState(null);
+        useEffect(()=>{},[msgData]);
+    //#endregion
+
+    //#region 讀取訂單資料
+        //讀取中央資料
+        const orderDataRef = useSelector((state)=>{
+            return(
+                state.order.orderData
+            )
+        })
+        useEffect(()=>{
+            setAllOrderData(orderDataRef);
+            //console.log("列表資料",orderDataRef);
+        },[orderDataRef])
+    //#endregion
+
+    //#region 讀取訂單訊息
+        //讀取中央資料
+        const orderMsgRef = useSelector((state)=>{
+            return(
+                state.order.orderMsg
+            )
+        })
+        useEffect(()=>{
+            setMsgData(orderMsgRef);
+            //console.log("訊息資料",orderMsgRef)
+        },[orderMsgRef])
     //#endregion
 
     //#region 取得所有訂單資料函式
@@ -52,8 +75,6 @@ function OrderManagement (){
             try{
                 const handleGetAllOrderDataRef = await dispatch(getAllOrderData()).unwrap();
                 console.log("取得所有訂單資料成功:",handleGetAllOrderDataRef);
-                setAllOrderData(handleGetAllOrderDataRef.allOrderData);
-                setMsgData(handleGetAllOrderDataRef.message);
             }catch(error){
                 console.log("取得所有訂單資料失敗");
             }
@@ -123,12 +144,11 @@ function OrderManagement (){
     }
     //#endregion
 
-            
-            
-
-    
-
-    
+    //#region 刪除訂單函式
+    const handleDeleteOrderData = (id) =>{
+        dispatch(orderDataDelete({orderId: id}));
+    }
+    //#endregion
 
     return(
         <>
@@ -167,6 +187,7 @@ function OrderManagement (){
                                                             <th className='title-set'>審核狀態</th>
                                                             <th className='title-set'>預計開案時間</th>
                                                             <th className='title-set'>訂單審核</th>
+                                                            <th className='title-set'>訂單刪除</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -201,6 +222,12 @@ function OrderManagement (){
                                                                             <button className='editBtn-set' 
                                                                                     onClick={()=>{handleReviewModalOpen(item)}}>
                                                                                 審核訂單
+                                                                            </button>
+                                                                        </td>
+                                                                        <td className='item-set'>
+                                                                            <button className='orderBtn-set' 
+                                                                                    onClick={()=>{handleDeleteOrderData(item.id);}}>
+                                                                                訂單刪除
                                                                             </button>
                                                                         </td>
                                                                     </tr>

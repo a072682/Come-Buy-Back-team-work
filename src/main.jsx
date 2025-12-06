@@ -8,7 +8,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './router';
 
 import { Provider } from 'react-redux'//使用ReduxToolkit時引入
-import { store } from './store.js'//使用ReduxToolkit時引入
+import store from './store.js'//使用ReduxToolkit時引入
 
 import './assets/styles/all.scss';//scss
 

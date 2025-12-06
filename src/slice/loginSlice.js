@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";//一開始先import createSlice(系統通常會自動抓取)
 import { axiosWithCookie, BASE_URL } from "../api";
 
-
-
 //此區塊為測試開發用內容
     // import axios from "axios";
     // axios.defaults.withCredentials = true; 

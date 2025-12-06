@@ -14,13 +14,24 @@ import { axiosWithCookie, BASE_URL } from "../api";
 export const orderSlice = createSlice({
   name: "order",
   initialState: {
-    
+    orderData:null,
+    orderMsg:null,
   },
   reducers: {
-    
+    //訂單資料上傳
+    orderUpLoad: (state, action) => {
+        state.orderData = action.payload;
+    },
+    //訂單資料上傳
+
+    //訂單訊息上傳
+    orderMsgUpLoad: (state, action) => {
+        state.orderMsg = action.payload;
+    },
+    //訂單資料上傳
   },
 });
-export const { } = orderSlice.actions;
+export const { orderUpLoad,orderMsgUpLoad } = orderSlice.actions;
 //輸出時為元件slice名稱+.reducer
 
 //#region
@@ -34,6 +45,10 @@ export const { } = orderSlice.actions;
             try {
                 const getAllOrderDataRef = await axiosWithCookie.get(`${BASE_URL}/adminOrder/getAllOrder`);
                 console.log("取得所有訂單資料成功",getAllOrderDataRef.data.message);
+                //更新訂單資料
+                dispatch(orderUpLoad(getAllOrderDataRef.data.allOrderData));
+                //更新訂單訊息
+                dispatch(orderMsgUpLoad(getAllOrderDataRef.data.message));
                 return(getAllOrderDataRef.data);
             } catch (error) {
                 console.log("取得所有訂單資料失敗",error.response.data);
@@ -65,10 +80,10 @@ export const { } = orderSlice.actions;
         async (_, { dispatch, rejectWithValue }) => {
             try {
                 const getToDayOrderDataRef = await axiosWithCookie.get(`${BASE_URL}/adminOrder/getToDayOrder`);
-                console.log("取得所有訂單資料成功",getToDayOrderDataRef.data.message);
+                console.log("取得今日訂單資料成功",getToDayOrderDataRef.data.message);
                 return(getToDayOrderDataRef.data);
             } catch (error) {
-                console.log("取得所有訂單資料失敗",error.response.data);
+                console.log("取得今日訂單資料失敗",error.response.data);
                 return rejectWithValue(error.response.data);
             }
         }
@@ -91,6 +106,21 @@ export const { } = orderSlice.actions;
     );
 //#endregion
 
-
+//#region 訂單刪除函式
+    export const orderDataDelete = createAsyncThunk(
+        "order/orderDataDelete",
+        async ({orderId},{ dispatch,rejectWithValue }) => {
+            try {
+                const orderDataDeleteRef = await axiosWithCookie.delete(`${BASE_URL}/adminOrder/deleteSingleOrder/${orderId}`);
+                //console.log("訂單刪除成功:",orderDataDeleteRef.data);
+                //刪除成功後，再次抓取最新訂單列表
+                dispatch(getAllOrderData());
+            } catch (error) {
+                console.log("訂單刪除失敗",error);
+                return rejectWithValue(error.response.data);
+            }
+        }
+    );
+//#endregion
 
 export default orderSlice.reducer;
