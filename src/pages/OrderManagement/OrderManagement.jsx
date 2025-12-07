@@ -18,7 +18,7 @@ function OrderManagement (){
         })
 
         useEffect(()=>{
-            console.log("loginState狀態:",loginState);
+            //console.log("loginState狀態:",loginState);
         },[loginState])
     //#endregion
 
@@ -74,7 +74,7 @@ function OrderManagement (){
         const handleGetAllOrderData = async()=>{
             try{
                 const handleGetAllOrderDataRef = await dispatch(getAllOrderData()).unwrap();
-                console.log("取得所有訂單資料成功:",handleGetAllOrderDataRef);
+                //console.log("取得所有訂單資料成功:",handleGetAllOrderDataRef);
             }catch(error){
                 console.log("取得所有訂單資料失敗");
             }
@@ -91,7 +91,7 @@ function OrderManagement (){
         const handleGetToDayOrderData = async()=>{
             try{
                 const handleGetToDayOrderDataRef = await dispatch(getToDayOrderData()).unwrap();
-                console.log("取得所有訂單資料成功:",handleGetToDayOrderDataRef);
+                //console.log("取得所有訂單資料成功:",handleGetToDayOrderDataRef);
                 setAllOrderData(handleGetToDayOrderDataRef.toDayOrderData);
                 setMsgData(handleGetToDayOrderDataRef.message);
             }catch(error){

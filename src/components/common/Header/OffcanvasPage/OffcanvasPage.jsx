@@ -16,13 +16,13 @@ function OffcanvasPage({ onOpen, handleClose, loginState}) {
         useEffect(() => {
             if (onOpen) {
                 document.body.style.overflow = "hidden"; // 🔒 禁止滾動
-                console.log("滾動鎖住");
+                //console.log("滾動鎖住");
             }else{
                 document.body.style.overflow = "auto"; // ✅ 恢復滾動
-                console.log("滾動解除");
+                //console.log("滾動解除");
             }
             return () => {
-                console.log("組件解散");
+                //console.log("組件解散");
             };
         }, [onOpen]);
     //控制上一頁問題

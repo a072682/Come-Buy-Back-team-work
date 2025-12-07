@@ -7,10 +7,11 @@ import axios from 'axios';
 // 只暴露 BASE_URL 給其他模組使用（不改動 axios 的預設行為）
 export let BASE_URL = ''; 
 
-export const axiosWithCookie = axios.create({
-  withCredentials: true, 
-});
 //這個作用是只要使用api就會自動帶入可攜帶cookie(withCredentials: true)的設定
+// export const axiosWithCookie = axios.create({
+//   withCredentials: true, 
+// });
+
 
 export async function initApi() {
   const url = `${import.meta.env.BASE_URL}config.json?v=${Date.now()}`;
@@ -44,3 +45,39 @@ export async function initApi() {
 export function getBaseUrl() {
   return api.defaults.baseURL || '';
 }
+
+//request 請求前 攔截
+axios.interceptors.request.use((content) => {
+
+    if (!content.headers) {
+        content.headers = {}; // <== 防止 undefined
+    }
+
+    //取出token
+    const token = localStorage.getItem("token");
+    //如果有token就放入標頭區塊內部
+    if (token) {
+        content.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return content;
+});
+
+//收到 API 回應後）更新 token
+//response 請求後 攔截
+axios.interceptors.response.use((response) => {
+    const newToken = response.headers["x-renewed-token"];
+
+    if (newToken) {
+      console.log("🔄 Token 已自動續期！");
+      localStorage.setItem("token", newToken);
+    }
+
+    return response;
+  },
+  //失敗時會執行以下內容
+  (error) => {
+    //向外回傳錯誤訊息
+    return Promise.reject(error);
+  }
+);

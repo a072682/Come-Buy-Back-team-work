@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";//一開始先import createSlice(系統通常會自動抓取)
-import { axiosWithCookie, BASE_URL } from "../api";
+import { BASE_URL } from "../api";
+import axios from "axios";
 
 //此區塊為測試開發用內容
     // import axios from "axios";
@@ -46,7 +47,7 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         async (_,{ dispatch }) => {
             dispatch(linkStateFalse()); 
             try {
-                const response = await axiosWithCookie.get(`${BASE_URL}/test-db`);
+                const response = await axios.get(`${BASE_URL}/test-db`);
                 console.log("連線成功",response.data);
                 dispatch(linkStateTrue()); 
                 return(response.data);
@@ -65,8 +66,8 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/getChartData",
         async (_,{ dispatch }) => {
             try {
-                const getChartDataRef = await axiosWithCookie.get(`${BASE_URL}/admin/getChartData`);
-                console.log("取得圓環資料成功",getChartDataRef.data);
+                const getChartDataRef = await axios.get(`${BASE_URL}/admin/getChartData`);
+                //console.log("取得圓環資料成功",getChartDataRef.data);
                 return(getChartDataRef.data);
             } catch (error) {
                 console.log("取得圓環資料失敗",error.response.data);
@@ -81,8 +82,8 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/getLineChartData",
         async (_,{ dispatch }) => {
             try {
-                const getLineChartDataRef = await axiosWithCookie.get(`${BASE_URL}/admin/getLineChartData`);
-                console.log("取得折線資料成功",getLineChartDataRef.data);
+                const getLineChartDataRef = await axios.get(`${BASE_URL}/admin/getLineChartData`);
+                //console.log("取得折線資料成功",getLineChartDataRef.data);
                 return(getLineChartDataRef.data.ChartData);
             } catch (error) {
                 console.log("取得折線資料失敗",error.response.data);
@@ -98,8 +99,19 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/loginUser",
         async (account, { dispatch, rejectWithValue }) => {
             try {
-                const handleLoginRef = await axiosWithCookie.post(`${BASE_URL}/admin/adminlogin`, account);
-                console.log("登入成功",handleLoginRef.data);
+                const handleLoginRef = await axios.post(`${BASE_URL}/admin/adminlogin`, account);
+                //console.log("登入成功",handleLoginRef.data);
+
+                //取出token並取名為tokenData
+                const tokenData = handleLoginRef.data.token;
+                //取出token並取名為tokenData
+
+                //如果tokenData存在則存入 localStorage並取名為token
+                if (tokenData) {
+                    //console.log("token存入成功");
+                    localStorage.setItem("token", tokenData);
+                }
+
                 dispatch(logout());
                 return({
                     login:handleLoginRef.data,
@@ -120,8 +132,8 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
             "login/checkLogin",
             async (_,{ dispatch, rejectWithValue }) => {
                 try {
-                    const checkLoginRef = await axiosWithCookie.post(`${BASE_URL}/admin/adminlogInCheck`);
-                    console.log("登入確認成功",checkLoginRef.data);
+                    const checkLoginRef = await axios.post(`${BASE_URL}/admin/adminlogInCheck`);
+                    //console.log("登入確認成功",checkLoginRef.data);
                     dispatch(login());
             } catch (error) {
                 console.log("登入確認失敗",error.response.data);
@@ -141,11 +153,14 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/logoutUser",
         async (_, { dispatch }) => {
             try {
-                const handleLogoutRef = await axiosWithCookie.post(`${BASE_URL}/admin/adminlogout`);
-                console.log("登出成功(Slice端)");
-                dispatch(logout());
+                const handleLogoutRef = await axios.post(`${BASE_URL}/admin/adminlogout`);
+                //console.log("登出成功(Slice端)");
             } catch (error) {
                 console.log("登出失敗(Slice端)");
+            } finally {
+                //移除token
+                localStorage.removeItem("token");
+                dispatch(logout());
             }
         }
     );
@@ -157,7 +172,7 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/getAllUserData",
         async (_, { dispatch, rejectWithValue }) => {
             try {
-                const getAllUserDataRef = await axiosWithCookie.get(`${BASE_URL}/admin/getAllUser`);
+                const getAllUserDataRef = await axios.get(`${BASE_URL}/admin/getAllUser`);
                 console.log("所有會員資料取得成功:",getAllUserDataRef.data.allUserData);
                 return(getAllUserDataRef.data.allUserData);
             } catch (error) {
@@ -173,7 +188,7 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/searchUserData",
         async ({searchData}, { dispatch, rejectWithValue }) => {
             try {
-                const searchUserDataRef = await axiosWithCookie.post(`${BASE_URL}/admin/searchUser`,searchData);
+                const searchUserDataRef = await axios.post(`${BASE_URL}/admin/searchUser`,searchData);
                 console.log("搜尋會員資料成功:",searchUserDataRef.data.message);
                 return(searchUserDataRef.data.searchUserData);
             } catch (error) {
@@ -189,7 +204,7 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
         "login/roleChange",
         async ({userData}, { dispatch, rejectWithValue }) => {
             try {
-                const roleChangeRef = await axiosWithCookie.post(`${BASE_URL}/admin/roleChange`,userData);
+                const roleChangeRef = await axios.post(`${BASE_URL}/admin/roleChange`,userData);
                 console.log("修改會員權限成功:",roleChangeRef.data);
 
             } catch (error) {

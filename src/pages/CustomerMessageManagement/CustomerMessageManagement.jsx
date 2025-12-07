@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './_CustomerMessageManagement.scss';
 import { useEffect, useState } from 'react';
-import { getAllMessageData, getToDayMessageData } from '../../slice/messageSlice';
+import { deleteMessageData, getAllMessageData, getToDayMessageData } from '../../slice/messageSlice';
 
 
 
@@ -18,8 +18,21 @@ function CustomerMessageManagement (){
         })
 
         useEffect(()=>{
-            console.log("loginState狀態:",loginState);
+            //console.log("loginState狀態:",loginState);
         },[loginState])
+    //#endregion
+
+    //#region 讀取留言觸發資料
+        //讀取中央資料
+        const TriggerData = useSelector((state)=>{
+            return(
+                state.message.messageTrigger
+            )
+        })
+
+        useEffect(()=>{
+            //console.log("觸發狀態:",TriggerData);
+        },[TriggerData])
     //#endregion
 
     //#region 讀取中央函式前置宣告
@@ -39,14 +52,16 @@ function CustomerMessageManagement (){
 
     //#region 儲存單一訂單資料狀態宣告
         const [messageData,setMessageData] = useState(null);
-        useEffect(()=>{console.log("確認留言",messageData)},[messageData]);
+        useEffect(()=>{
+            //console.log("確認留言",messageData)
+        },[messageData]);
     //#endregion
 
     //#region 取得所有留言資料函式
         const handleGetAllMessageData = async()=>{
             try{
                 const handleGetAllMessageDataRef = await dispatch(getAllMessageData()).unwrap();
-                console.log("取得所有留言資料成功:",handleGetAllMessageDataRef);
+                //console.log("取得所有留言資料成功:",handleGetAllMessageDataRef);
                 setAllMessageData(handleGetAllMessageDataRef.allMessageData);
                 setMsgData(handleGetAllMessageDataRef.message);
                 setMessageData(null);
@@ -59,7 +74,7 @@ function CustomerMessageManagement (){
     //#region 開場執行取得所有訂單資料函式
         useEffect(()=>{
             handleGetAllMessageData();
-        },[])
+        },[TriggerData])
     //#endregion
 
     //#region 取得今日所有訂單資料函式
@@ -73,6 +88,12 @@ function CustomerMessageManagement (){
             }catch(error){
                 console.log("取得所有留言資料失敗");
             }
+        };
+    //#endregion
+
+    //#region 刪除留言函式
+        const handleDeleteMessageData = (id) => {
+            dispatch(deleteMessageData({orderId: id}));
         };
     //#endregion
 
@@ -131,6 +152,13 @@ function CustomerMessageManagement (){
                                                     <>
                                                         <div className='messageTitle-box'>
                                                             <h3 className='messageTitle-set'>留言內容</h3>
+                                                            <button className='messageBtnSet' 
+                                                                    type='button'
+                                                                    onClick={()=>{
+                                                                        handleDeleteMessageData(messageData.id);
+                                                                    }}>
+                                                                刪除留言
+                                                            </button>
                                                         </div>
                                                         <div className='messageItem-box'>
                                                             <p className='itemText-set'>會員名稱: <span>{messageData.username}</span> </p>

@@ -24,7 +24,6 @@ function Header(){
                 state.login.linkState
             )
         })
-
         useEffect(()=>{},[linkState])
     //#endregion
 
@@ -37,7 +36,7 @@ function Header(){
         })
 
         useEffect(()=>{
-            console.log("loginState狀態:",loginState);
+            //console.log("loginState狀態:",loginState);
         },[loginState])
     //#endregion
 
@@ -49,8 +48,20 @@ function Header(){
     //#region 連線測試
         //連線測試
         useEffect(()=>{
-            dispatch(linkTest()); 
-        },[])
+            if(linkState){
+                console.log("連線成功敲擊結束");
+                return;
+            }else if(!linkState){
+                console.log("執行敲擊");
+                // 每兩秒執行一次
+                const timeId = setInterval(() => {
+                    dispatch(linkTest());
+                }, 2000); 
+
+                // 離開頁面時清除 interval（必要）
+                return () => clearInterval(timeId);
+            }
+        },[linkState]);
         //連線測試
     //#endregion
 
@@ -66,6 +77,16 @@ function Header(){
                 }
             };
             getUserData();
+
+            // 每半小時執行一次
+            const timeId = setInterval(() => {
+                console.log("我執行了");
+                getUserData();
+            }, 30*60*1000); 
+            
+            // 離開頁面時清除 interval（必要）
+            return () => clearInterval(timeId);
+
         },[]);
         //登入確認
     //#endregion
