@@ -215,6 +215,22 @@ export const { login, logout, linkStateTrue, linkStateFalse,  } = loginSlice.act
     );
 //#endregion  
 
+//#region 刪除會員資料
+    export const deleteUser = createAsyncThunk(
+        "login/deleteUser",
+        async ({id}, { dispatch, rejectWithValue }) => {
+            try {
+                const roleChangeRef = await axios.delete(`${BASE_URL}/admin/deleteUser`,{data: { id }});
+                console.log("刪除會員資料成功:",roleChangeRef.data);
+                return(roleChangeRef.data);
+            } catch (error) {
+                console.log("刪除會員資料失敗",error.response.data);
+                return rejectWithValue(error.response.data);
+            }
+        }
+    );
+//#endregion  
+
   
 
 

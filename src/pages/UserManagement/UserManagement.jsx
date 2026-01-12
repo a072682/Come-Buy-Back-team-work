@@ -4,29 +4,26 @@ import './_UserManagement.scss';
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUserData, searchUserData } from '../../slice/loginSlice';
+import { deleteUser, getAllUserData, searchUserData } from '../../slice/loginSlice';
 import RoleModal from './roleModal/roleModal';
-
 
 
 
 function UserManagement (){
 
-    //#region 讀取中央登入資料
-        //讀取中央資料
-        const loginState = useSelector((state)=>{
-            return(
-                state.login.isLogin
-            )
-        })
+    //#region 讀取登入狀態
+    const loginState = useSelector((state)=>{
+        return(
+            state.login.isLogin
+        )
+    })
 
-        useEffect(()=>{
-            console.log("loginState狀態:",loginState);
-        },[loginState])
+    useEffect(()=>{
+        //console.log("loginState狀態:",loginState);
+    },[loginState])
     //#endregion
 
     //#region 讀取中央函式前置宣告
-        //讀取中央函式前置宣告
         const dispatch = useDispatch();
     //#endregion
 
@@ -36,18 +33,18 @@ function UserManagement (){
     //#endregion
 
     //#region 取得所有會員資料
-        useEffect(()=>{
-            const handleGetAllUserData = async()=>{
-                try{
-                    const handleGetAllUserDataRef = await dispatch(getAllUserData()).unwrap();
-                    console.log("取得會員資料成功:",handleGetAllUserDataRef);
-                    setUserItemData(handleGetAllUserDataRef);
-                }catch(error){
-                    console.log("登入檢查失敗");
-                }
-            };
-            handleGetAllUserData();
-        },[]);
+    const handleGetAllUserData = async()=>{
+        try{
+            const handleGetAllUserDataRef = await dispatch(getAllUserData()).unwrap();
+            console.log("取得會員資料成功:",handleGetAllUserDataRef);
+            setUserItemData(handleGetAllUserDataRef);
+        }catch(error){
+            console.log("登入檢查失敗");
+        }
+    };
+    useEffect(()=>{
+        handleGetAllUserData();
+    },[]);
     //#endregion
 
     //#region 搜尋用會員資料宣告
@@ -136,6 +133,19 @@ function UserManagement (){
                 username:data.username,
                 role:data.role,
             });
+        };
+    //#endregion
+
+    //#region 刪除會員資料函式
+        const handleDeleteUser = async(id) => {
+            console.log("確認id",id);
+            try{
+                const handleDeleteUserRef = await dispatch(deleteUser({ id })).unwrap();
+                console.log("刪除會員資料成功:",handleDeleteUserRef.data);
+                await handleGetAllUserData();
+            }catch(error){
+                console.log("刪除會員資料失敗",error);
+            }
         };
     //#endregion
 
@@ -244,6 +254,7 @@ function UserManagement (){
                                                 <th className='title-set'>會員角色</th>
                                                 {/* <th className='title-set'>是否啟用</th> */}
                                                 <th className='title-set'>編輯</th>
+                                                <th className='title-set'>刪除會員</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -264,6 +275,20 @@ function UserManagement (){
                                                                     編輯權限
                                                                 </button>
                                                             </td>
+                                                            {
+                                                                item.role === "admin"?
+                                                                (null)
+                                                                :
+                                                                (
+                                                                <td className='item-set'> 
+                                                                    <button className='editBtn-set' 
+                                                                    onClick={()=>{handleDeleteUser(item.id);}}>
+                                                                        刪除會員
+                                                                    </button>
+                                                                </td>
+                                                                )
+                                                            }
+                                                            
                                                         </tr>
                                                     )
                                                 })
